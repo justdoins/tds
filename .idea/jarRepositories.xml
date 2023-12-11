@@ -12,6 +12,11 @@
       <option name="url" value="file:/$PROJECT_DIR$/../../../maven/maven_repository/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="MavenLocal" />
+      <option name="name" value="MavenLocal" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../../maven/maven_repository/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="maven2" />
       <option name="name" value="maven2" />
       <option name="url" value="https://maven.aliyun.com/repository/central" />
