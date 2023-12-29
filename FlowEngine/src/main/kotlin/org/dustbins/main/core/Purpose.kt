@@ -1,4 +1,4 @@
-package org.dustbins.main
+package org.dustbins.main.core
 
 import java.util.*
 import kotlin.collections.ArrayDeque
@@ -13,9 +13,9 @@ import kotlin.collections.ArrayDeque
  * @property parent its parent purpose
  * @property id its id
  * @property generation the id stack
- * @constructor name
+ * @constructor name,content,parentId,parentDeque
  * @sample samplePurpose
- *
+ * @see Engine
  */
 class Purpose {
 

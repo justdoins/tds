@@ -2,6 +2,7 @@ val ktorVersion: String by project
 val kotlinVersion: String by project
 val logbackVersion: String by project
 val slf4jVersion:String by project
+val mongodbVersion:String by project
 plugins {
     kotlin("jvm") version "1.9.21"
     id("io.ktor.plugin") version "2.3.7"
@@ -78,6 +79,15 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests-jvm")
 //    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
+    /**
+     * db
+     */
+    // Kotlin coroutine dependency
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+
+    // MongoDB Kotlin driver dependency
+    implementation("org.mongodb:mongodb-driver-kotlin-coroutine:$mongodbVersion")
+
 }
 
 tasks.test {
