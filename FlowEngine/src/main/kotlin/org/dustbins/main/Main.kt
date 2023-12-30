@@ -1,29 +1,22 @@
 package org.dustbins.main
 
-import com.auth0.jwt.JWT
-import com.auth0.jwt.algorithms.Algorithm
-import io.github.oshai.kotlinlogging.KotlinLogging
-import io.ktor.http.*
+//import ch.qos.logback.classic.Logger
+//import io.github.oshai.kotlinlogging.KotlinLogging
+//import io.ktor.client.plugins.logging.*
+//import io.ktor.client.plugins.logging.Logger
 import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import io.ktor.server.auth.jwt.*
 import io.ktor.server.engine.*
-import io.ktor.server.html.*
 import io.ktor.server.netty.*
-import io.ktor.server.plugins.cors.routing.*
-import io.ktor.server.plugins.openapi.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
-import kotlinx.html.body
-import kotlinx.html.h1
-import kotlinx.html.li
-import kotlinx.html.ul
+import io.ktor.util.logging.*
+//import io.ktor.util.logging.*
 import org.dustbins.main.core.Engine
 import org.dustbins.main.core.Purpose
 import org.dustbins.main.core.Space
+import org.dustbins.main.ktor.module
 import kotlin.concurrent.thread
 
-private val logger = KotlinLogging.logger {}
+//private val logger = KotlinLogging.logger {}
+//public val logger =Logger
 private const val name = "FlowEngine"
 
 /**
@@ -49,12 +42,12 @@ class Main :Init{
     private fun loadEngine() {
 //        ThreadLocal<Engine>()
         val main = Space.MAIN
-        logger.info { main.NAME+"$main+${Space.MAIN}" }
-        logger.debug { "$main" }
+//        logger.info { main.NAME+"$main+${Space.MAIN}" }
+//        logger.debug { "$main" }
         val createEngineByPurpose = createEngineByPurpose()
         val purpose = Purpose("dd")
-        logger.debug { purpose }
-        logger.debug { createEngineByPurpose }
+//        logger.debug { purpose }
+//        logger.debug { createEngineByPurpose }
 //        val name="d"
 //        val content=""
 //        Purpose{name, content ->  }
@@ -111,76 +104,13 @@ fun doNothing() {
  */
 fun main() {
     //logger
-    logger.info { "welcome using $name" }
-    logger.debug { "this is a debug message" }
+//    logger.info { "welcome using $name" }
+//    logger.debug { "this is a debug message" }
+//    logger
+//    val logger=Logger
     doNothing()
     Main().init()
     embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module)
         .start(wait = true)
 
-}
-fun Application.configureRouting() {
-    routing {
-        get("/") {
-            call.respondText("Hello World!")
-            logger.debug { "access /" }
-        }
-    }
-}
-fun Application.configureTemplating() {
-    routing {
-        get("/html-dsl") {
-            call.respondHtml {
-                body {
-                    h1 { +"HTML" }
-                    ul {
-                        for (n in 1..10) {
-                            li { +"$n" }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-fun Application.configureSecurity() {
-    // Please read the jwt property from the config file if you are using EngineMain
-    val jwtAudience = "jwt-audience"
-    val jwtDomain = "https://jwt-provider-domain/"
-    val jwtRealm = "ktor sample app"
-    val jwtSecret = "secret"
-    authentication {
-        jwt {
-            realm = jwtRealm
-            verifier(
-                JWT
-                    .require(Algorithm.HMAC256(jwtSecret))
-                    .withAudience(jwtAudience)
-                    .withIssuer(jwtDomain)
-                    .build()
-            )
-            validate { credential ->
-                if (credential.payload.audience.contains(jwtAudience)) JWTPrincipal(credential.payload) else null
-            }
-        }
-    }
-}
-fun Application.configureHTTP() {
-    install(CORS) {
-        allowMethod(HttpMethod.Options)
-        allowMethod(HttpMethod.Put)
-        allowMethod(HttpMethod.Delete)
-        allowMethod(HttpMethod.Patch)
-        allowHeader(HttpHeaders.Authorization)
-        allowHeader("MyCustomHeader")
-        anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
-    }
-    routing {
-        openAPI(path = "openapi")
-    }
-}
-fun Application.module(){
-    configureRouting()
-    configureTemplating()
-    configureHTTP()
 }

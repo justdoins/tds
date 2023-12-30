@@ -22,7 +22,7 @@ class Purpose {
     private constructor()
     constructor(name: String){
         this.name=name
-        this.content=name
+        this.content=""
         this.generation.add(this.id)
     }
     constructor(name: String,content: String){

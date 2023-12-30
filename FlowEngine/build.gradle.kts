@@ -3,6 +3,7 @@ val kotlinVersion: String by project
 val logbackVersion: String by project
 val slf4jVersion:String by project
 val mongodbVersion:String by project
+val coroutinesVersion:String by project
 plugins {
     kotlin("jvm") version "1.9.21"
     id("io.ktor.plugin") version "2.3.7"
@@ -52,7 +53,9 @@ dependencies {
      * slf4j-impl only need one
      */
 //    implementation("org.slf4j:slf4j-api:${VER.SLF4J}")
-    implementation("org.slf4j:slf4j-api:$slf4jVersion")
+//    implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    implementation("io.ktor:ktor-client-logging:$ktorVersion")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
 //    implementation("org.slf4j:slf4j-simple:${VER.SLF4J}")
 //    implementation("ch.qos.logback:logback-classic:${VER.LOGBACK}")
 //    implementation("org.slf4j:slf4j-reload4j:${VER.SLF4J}")
@@ -61,7 +64,7 @@ dependencies {
      * Deprecated
      */
 //    implementation("org.apache.logging.log4j:log4j-slf4j-impl:${VER.LOG4J}")
-    implementation("io.github.oshai:kotlin-logging-jvm:${VER.LOGGER}")
+//    implementation("io.github.oshai:kotlin-logging-jvm:${VER.LOGGER}")
     /**
      * http
      */
@@ -75,7 +78,6 @@ dependencies {
     implementation("io.ktor:ktor-server-html-builder-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
 //    implementation("ch.qos.logback:logback-classic:${VER.logback_version}")
-    implementation("ch.qos.logback:logback-classic:$logbackVersion")
     testImplementation("io.ktor:ktor-server-tests-jvm")
 //    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
@@ -83,7 +85,7 @@ dependencies {
      * db
      */
     // Kotlin coroutine dependency
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
 
     // MongoDB Kotlin driver dependency
     implementation("org.mongodb:mongodb-driver-kotlin-coroutine:$mongodbVersion")
