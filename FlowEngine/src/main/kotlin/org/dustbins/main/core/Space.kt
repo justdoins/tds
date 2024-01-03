@@ -1,5 +1,6 @@
 package org.dustbins.main.core
 
+import org.dustbins.main.core.model.Purpose
 import org.dustbins.main.core.operation.SpaceOperation
 
 /**

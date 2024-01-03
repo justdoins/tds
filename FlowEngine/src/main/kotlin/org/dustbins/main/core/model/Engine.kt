@@ -1,4 +1,4 @@
-package org.dustbins.main.core
+package org.dustbins.main.core.model
 
 /**
  * @constructor purpose

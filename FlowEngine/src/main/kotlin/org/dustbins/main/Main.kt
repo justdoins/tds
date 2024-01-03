@@ -7,10 +7,9 @@ package org.dustbins.main
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import io.ktor.util.logging.*
 //import io.ktor.util.logging.*
-import org.dustbins.main.core.Engine
-import org.dustbins.main.core.Purpose
+import org.dustbins.main.core.model.Engine
+import org.dustbins.main.core.model.Purpose
 import org.dustbins.main.core.Space
 import org.dustbins.main.ktor.module
 import kotlin.concurrent.thread
@@ -90,6 +89,7 @@ class Main :Init{
 
 
 }
+
 interface Init{
     fun init()
 }
